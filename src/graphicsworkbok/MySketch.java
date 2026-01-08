@@ -4,46 +4,65 @@
  */
 package graphicsworkbok;
 import processing.core.PApplet;
-//test
-public class MySketch extends PApplet {
-  private Person person1; // declare a person object
-  private Person person2; // declare a person object
-  private boolean showInfo = false; // whether or not to display the person's info
 
+public class MySketch extends PApplet {
+  private Car car1; // declare a car object
+  private Car car2;
+  private Car selectedCar = null; // which car is currently controlled
+  private boolean showInfoCar1 = false; // whether or not to display the car's info
+  private boolean showInfoCar2 = false; // whether or not to display the car's info
+
+  
   public void settings() {
     size(400, 400);
   }
-
   public void setup() {
     background(255); // set the background color to white
     // create a person object in the center of the screen
-    person1 = new Person(this, 0, 0, "Mr. Lu", 16, "images/thefit.png");
-    person2 = new Person(this, 100, 100, "Mr. Loo", 88, "images/fit.png");
+    car1 = new Car(this, 100, 100, 2, "images/monkey.png"); 
+    car2 = new Car(this, 200, 200, 2, "images/thefit.png"); 
   }
-
+  
   public void draw() {
     background(255); // clear the screen
-    person1.draw(); // draw the person on the screen
-    person2.draw(); // draw the person on the screen
-    drawCollisions();
-  }
+    car1.draw(); // draw the person on the screen
+    car2.draw();
+   if (showInfoCar1) {
+      // display the person's info if the showInfo flag is true
+      car1.displayInfo(this); 
+   } if (showInfoCar2) {
+      car2.displayInfo(this);
+   }
 
-  public void drawCollisions() {
-    if (person1.isCollidingWith(person2)) {
-      fill(255, 0, 0); // set the stroke color to red
-      this.text("honk honk", person2.x, person2.y); 
-    }
+    if (keyPressed && selectedCar != null) {
+  if (keyCode == LEFT) {
+    selectedCar.move(-5, 0);
+  } else if (keyCode == RIGHT) {
+    selectedCar.move(5, 0);
+  } else if (keyCode == UP) {
+    selectedCar.move(0, -5);
+  } else if (keyCode == DOWN) {
+    selectedCar.move(0, 5);
   }
+}
+  }
+  
+  public void mousePressed() {
+  if (car1.isClicked(mouseX, mouseY)) {
+    selectedCar = car1;
+    showInfoCar1 = true;
+    showInfoCar2 = false;
+  } 
+  else if (car2.isClicked(mouseX, mouseY)) {
+    selectedCar = car2;
+    showInfoCar2 = true;
+    showInfoCar1 = false;
+  } 
+  else {
+    selectedCar = null;
+    showInfoCar1 = false;
+    showInfoCar2 = false;
+  }
+}
 
-  public void keyPressed() {
-    if (keyCode == LEFT) {
-      person1.move(-10, 0); // move the person to the left when the left arrow key is pressed
-    } else if (keyCode == RIGHT) {
-      person1.move(10, 0); // move the person to the right when the right arrow key is pressed
-    } else if (keyCode == UP) {
-      person1.move(0, -10); // move the person up when the up arrow key is pressed
-    } else if (keyCode == DOWN) {
-      person1.move(0, 10); // move the person down when the down arrow key is pressed
-    }
-  }
 }
