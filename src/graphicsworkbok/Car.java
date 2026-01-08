@@ -41,7 +41,7 @@ public class Car {
   public boolean isClicked(int mouseX, int mouseY) {
     float d = PApplet.dist(mouseX, mouseY, x, y);
     // return true if  mouse is within 25px of the person's position
-    return d < 55; 
+    return d < 60; 
   }
 
   public void displayInfo(PApplet p) {

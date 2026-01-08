@@ -14,7 +14,7 @@ public class MySketch extends PApplet {
 
   
   public void settings() {
-    size(400, 400);
+    size(800, 800);
   }
   public void setup() {
     background(255); // set the background color to white
