@@ -6,63 +6,100 @@ package graphicsworkbok;
 import processing.core.PApplet;
 
 public class MySketch extends PApplet {
-  private Car car1; // declare a car object
-  private Car car2;
-  private Car selectedCar = null; // which car is currently controlled
-  private boolean showInfoCar1 = false; // whether or not to display the car's info
-  private boolean showInfoCar2 = false; // whether or not to display the car's info
+    // game states to progress
+    private int gameState = 0;
+    // 0, main menu
+    // 1, story
+    // 2, zodiac finder
 
   
   public void settings() {
-    size(800, 800);
+    size(1200, 800);
   }
   public void setup() {
-    background(255); // set the background color to white
-    // create a person object in the center of the screen
-    car1 = new Car(this, 100, 100, 2, "images/monkey.png"); 
-    car2 = new Car(this, 200, 200, 2, "images/thefit.png"); 
+    textAlign(CENTER); // all text will be centred horizontally
   }
   
   public void draw() {
-    background(255); // clear the screen
-    car1.draw(); // draw the person on the screen
-    car2.draw();
-   if (showInfoCar1) {
-      // display the person's info if the showInfo flag is true
-      car1.displayInfo(this); 
-   } if (showInfoCar2) {
-      car2.displayInfo(this);
-   }
+    background(255); // white bg
 
-    if (keyPressed && selectedCar != null) {
-  if (keyCode == LEFT) {
-    selectedCar.move(-5, 0);
-  } else if (keyCode == RIGHT) {
-    selectedCar.move(5, 0);
-  } else if (keyCode == UP) {
-    selectedCar.move(0, -5);
-  } else if (keyCode == DOWN) {
-    selectedCar.move(0, 5);
+    if (gameState == 0) {
+      drawMenu(); // main menu for gameState 0
+    } 
+    else if (gameState == 1) {
+      drawStory(); // story for gameState 1
+      drawBackButton();
+    } 
+    else if (gameState == 2) {
+      drawZodiac(); // zodiac finder for gameState 2
+      drawBackButton();
+    }
   }
-}
+
+  // main menu
+  public void drawMenu() {
+    fill(0); // black text colour
+    textSize(48); // text size
+    text("KW - The Great Zodiac Race", width / 2, 200); // title drawn in center
+
+    // Start Button
+    drawButton(width / 2, 350, 300, 60, "START"); // start button
+
+    // Zodiac Finder Button
+    drawButton(width / 2, 450, 300, 60, "Find Your Zodiac"); // zodiac finder button
+  }
+
+  // method for drawing buttons
+  public void drawButton(int x, int y, int w, int h, String label) {
+    rectMode(CENTER); // this makes rectangles draw in the center
+    fill(200); // gray colour for buttons
+    rect(x, y, w, h); // draws the rectangle
+    fill(0); // black colour for button text
+    textSize(24); // text size in button
+    text(label, x, y + 8); // draw button labels slightly lower
   }
   
-  public void mousePressed() {
-  if (car1.isClicked(mouseX, mouseY)) {
-    selectedCar = car1;
-    showInfoCar1 = true;
-    showInfoCar2 = false;
-  } 
-  else if (car2.isClicked(mouseX, mouseY)) {
-    selectedCar = car2;
-    showInfoCar2 = true;
-    showInfoCar1 = false;
-  } 
-  else {
-    selectedCar = null;
-    showInfoCar1 = false;
-    showInfoCar2 = false;
+  public void drawBackButton() {
+      rectMode(CORNER); // align in corner
+      fill(200); // button colour
+      rect(10, 10, 60, 20); // button dimension in top left
+      fill(0); // text colour
+      textSize(16);
+      text("< BACK", 40, 26);
   }
-}
 
+  // placeholders
+  public void drawStory() {
+    fill(0);
+    textSize(32);
+    text("Story here", width / 2, height / 2);
+  }
+
+  public void drawZodiac() {
+    fill(0);
+    textSize(32);
+    text("Zodiac Finder here", width / 2, height / 2);
+  }
+
+  // inputs
+  public void mousePressed() {
+
+    // main menu buttons, check if program is current on menu
+    if (gameState == 0) {
+      // check if start story button was clicked
+      if (mouseX > width/2 - 150 && mouseX < width/2 + 150 && mouseY > 320 && mouseY < 380) {
+        gameState = 1; // if so, switch gameState for story
+      }
+      // check if zodiac finder button was clicked
+      else if (mouseX > width/2 - 150 && mouseX < width/2 + 150 && mouseY > 420 && mouseY < 480) {
+        gameState = 2; // if so, switch gameState for zodiac finder
+      }
+    } 
+    // return to menu
+    else { // if mouse clicks in back buttons bounds
+        if (mouseX > 10 && mouseX < 70 && mouseY > 10 && mouseY < 38) {
+            gameState = 0; 
+        }
+    }
+  }
 }
