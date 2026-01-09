@@ -40,7 +40,7 @@ public class MySketch extends PApplet {
   public void drawMenu() {
     fill(0); // black text colour
     textSize(48); // text size
-    text("KW - The Great Zodiac Race", width / 2, 200); // title drawn in center
+    text("KW - The Story of the Chinese Zodiac", width / 2, 200); // title drawn in center
 
     // Start Button
     drawButton(width / 2, 350, 300, 60, "START"); // start button
