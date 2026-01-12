@@ -11,13 +11,13 @@ package graphicsworkbok;
 import processing.core.PApplet;
 import processing.core.PImage;
 
-public class Car {
+public class Asset {
   private int x, y; // position of the person
   private int speed; // age of the person
   private PImage image; // image of the person
   private PApplet app; // the canvas used to display
  
-  public Car(PApplet p, int x, int y, int speed, String imagePath) {
+  public Asset(PApplet p, int x, int y, int speed, String imagePath) {
     this.app = p;
     this.x = x;
     this.y = y;

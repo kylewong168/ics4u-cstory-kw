@@ -4,6 +4,10 @@
  */
 package graphicsworkbok;
 import processing.core.PApplet;
+import java.awt.AlphaComposite;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 public class MySketch extends PApplet {
     // game states to progress
@@ -11,13 +15,17 @@ public class MySketch extends PApplet {
     // 0, main menu
     // 1, story
     // 2, zodiac finder
-
+    // add all assets here when made, or it wont work
+    private Asset plains;
+    private Asset dbox;
   
   public void settings() {
     size(1200, 800);
   }
   public void setup() {
     textAlign(CENTER); // all text will be centred horizontally
+    dbox = new Asset(this, 300, 64, 99, "images/dbox.png"); // get better image
+    plains = new Asset(this, 0, 0, 99, "images/plains.png");
   }
   
   public void draw() {
@@ -65,11 +73,25 @@ public class MySketch extends PApplet {
       rect(10, 10, 60, 20); // button dimension in top left
       fill(0); // text colour
       textSize(16);
-      text("< BACK", 40, 26);
+      text("< BACK", 40, 26); // 
   }
 
-  // placeholders
+  // placeholders for drawing gameState
   public void drawStory() {
+    plains.draw();
+    dbox.draw();
+    fill(255); // white
+    textSize(32); // below is the longest one line of dialogue should be before cut off
+    text("Once upon a time in ancient China...", width / 2, 68);
+    fill(255);
+    textSize(32);
+    text("The Jade Emperor announces a race to determine the order of", width / 2, 100);
+    fill(255);
+    textSize(32);
+    text("Zodiac animals. The order the animals cross will earn a year", width / 2, 132);
+    fill(255);
+    textSize(32);
+    text("named after them.", width / 2, 164);
     fill(0);
     textSize(32);
     text("Story here", width / 2, height / 2);
