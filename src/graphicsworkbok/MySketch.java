@@ -17,15 +17,43 @@ public class MySketch extends PApplet {
     // 2, zodiac finder
     // add all assets here when made, or it wont work
     private Asset plains;
+    private Asset river;
     private Asset dbox;
+    private Asset rat;
+    private Asset ox;
+    private Asset tiger;
+    private Asset rabbit;
+    private Asset dragon;
+    private Asset snake;
+    private Asset horse;
+    private Asset goat;
+    private Asset monkey;
+    private Asset rooster;
+    private Asset dog;
+    private Asset pig;
   
   public void settings() {
     size(1200, 800);
   }
   public void setup() {
     textAlign(CENTER); // all text will be centred horizontally
-    dbox = new Asset(this, 300, 64, 99, "images/dbox.png"); // get better image
+    dbox = new Asset(this, 90, 48, 99, "images/dbox.png"); // standard position for it
     plains = new Asset(this, 0, 0, 99, "images/plains.png");
+    river = new Asset(this, 0, 0, 99, "images/river.png");
+    rat = new Asset(this, 120, 541, 99, "images/rat.png");
+    ox = new Asset(this, 170, 511, 99, "images/ox.png");
+    tiger = new Asset(this, 300, 515, 99, "images/tiger.png");
+    rabbit = new Asset(this, 420, 509, 99, "images/rabbit.png");
+    dragon = new Asset(this, 460, 560, 99, "images/dragon.png");
+    snake = new Asset(this, 600, 600, 99, "images/snake.png");
+    horse = new Asset(this, 650, 511, 99, "images/horse.png");
+    goat = new Asset(this, 750, 620, 99, "images/goat.png");
+    monkey = new Asset(this, 750, 510, 99, "images/monkey.png");
+    rooster = new Asset(this, 790, 561, 99, "images/rooster.png");
+    dog = new Asset(this, 310, 600, 99, "images/dog.png");
+    pig = new Asset(this, 880, 514, 99, "images/pig.png");
+    
+    
   }
   
   public void draw() {
@@ -80,21 +108,27 @@ public class MySketch extends PApplet {
   public void drawStory() {
     plains.draw();
     dbox.draw();
-    fill(255); // white
-    textSize(32); // below is the longest one line of dialogue should be before cut off
-    text("Once upon a time in ancient China...", width / 2, 68);
-    fill(255);
-    textSize(32);
-    text("The Jade Emperor announces a race to determine the order of", width / 2, 100);
-    fill(255);
-    textSize(32);
-    text("Zodiac animals. The order the animals cross will earn a year", width / 2, 132);
-    fill(255);
-    textSize(32);
-    text("named after them.", width / 2, 164);
+    rat.draw();
+    ox.draw();
+    tiger.draw();
+    rabbit.draw();
+    dragon.draw();
+    snake.draw();
+    horse.draw();
+    goat.draw();
+    monkey.draw();
+    rooster.draw();
+    dog.draw();
+    pig.draw();
+    fill(0); // white
+    textSize(28); // below is the longest one line of dialogue should be before cut off
+    text("Once upon a time in ancient China...", width / 2, 96);
     fill(0);
-    textSize(32);
-    text("Story here", width / 2, height / 2);
+    textSize(28);
+    text("The Jade Emperor announces a race to determine the order of Zodiac", width / 2, 124);
+    fill(0);
+    textSize(28);
+    text("animals. The order the animals cross will earn a year named after them.", width / 2, 152);
   }
 
   public void drawZodiac() {
