@@ -15,10 +15,17 @@ public class MySketch extends PApplet {
     // 0, main menu
     // 1, story
     // 2, zodiac finder
+    // allows for "sub-states" within the game for progression
+    private int storyStep = 0;
+    // 0 intro
+    // 1 emperor explain
+    // 2 begin
+    // 3 wip
     // add all assets here when made, or it wont work
     private Asset plains;
     private Asset river;
     private Asset dbox;
+    private Asset jadeemperor;
     private Asset rat;
     private Asset ox;
     private Asset tiger;
@@ -38,6 +45,7 @@ public class MySketch extends PApplet {
   public void setup() {
     textAlign(CENTER); // all text will be centred horizontally
     dbox = new Asset(this, 90, 48, 99, "images/dbox.png"); // standard position for it
+    jadeemperor = new Asset(this, 1050, 475, 99, "images/jadeemperor.png");
     plains = new Asset(this, 0, 0, 99, "images/plains.png");
     river = new Asset(this, 0, 0, 99, "images/river.png");
     rat = new Asset(this, 120, 541, 99, "images/rat.png");
@@ -101,13 +109,14 @@ public class MySketch extends PApplet {
       rect(10, 10, 60, 20); // button dimension in top left
       fill(0); // text colour
       textSize(16);
-      text("< BACK", 40, 26); // 
+      text("< BACK", 40, 26); // back text
   }
 
   // placeholders for drawing gameState
   public void drawStory() {
     plains.draw();
     dbox.draw();
+    jadeemperor.draw();
     rat.draw();
     ox.draw();
     tiger.draw();
@@ -130,7 +139,7 @@ public class MySketch extends PApplet {
     textSize(28);
     text("animals. The order the animals cross will earn a year named after them.", width / 2, 152);
   }
-
+  // placeholder for the additional feature
   public void drawZodiac() {
     fill(0);
     textSize(32);
@@ -139,7 +148,6 @@ public class MySketch extends PApplet {
 
   // inputs
   public void mousePressed() {
-
     // main menu buttons, check if program is current on menu
     if (gameState == 0) {
       // check if start story button was clicked
@@ -150,7 +158,8 @@ public class MySketch extends PApplet {
       else if (mouseX > width/2 - 150 && mouseX < width/2 + 150 && mouseY > 420 && mouseY < 480) {
         gameState = 2; // if so, switch gameState for zodiac finder
       }
-    } 
+    }
+    
     // return to menu
     else { // if mouse clicks in back buttons bounds
         if (mouseX > 10 && mouseX < 70 && mouseY > 10 && mouseY < 38) {
