@@ -129,15 +129,28 @@ public class MySketch extends PApplet {
     rooster.draw();
     dog.draw();
     pig.draw();
-    fill(0); // white
+    fill(0); // black
     textSize(28); // below is the longest one line of dialogue should be before cut off
-    text("Once upon a time in ancient China...", width / 2, 96);
-    fill(0);
-    textSize(28);
-    text("The Jade Emperor announces a race to determine the order of Zodiac", width / 2, 124);
-    fill(0);
-    textSize(28);
-    text("animals. The order the animals cross will earn a year named after them.", width / 2, 152);
+    if (storyStep == 0) {
+        text("Once upon a time in ancient China...", width / 2, 96);
+        text("The Jade Emperor announced a race between all animals.", width / 2, 124);
+    }
+    else if (storyStep == 1) {
+        text("The Jade emperor needed to choose an animal for each year in the twelve", width / 2, 96);
+        text("year cycle. All will race across a river, and the first twelve to finish each", width / 2, 124);
+        text("got to represent a year.", width / 2, 152);
+    }
+    else if (storyStep == 2) {
+        text("The Jade emperor crode:", width / 2, 96);
+        text("tuh92cruh92uh8923ruh923ruh923rff6tg78g835gh8uh89uh9fj", width / 2, 124);
+    }
+  }
+  
+  public void drawRiverScene() {
+      river.draw();
+      rat.draw();
+      ox.draw();
+      
   }
   // placeholder for the additional feature
   public void drawZodiac() {
@@ -145,26 +158,52 @@ public class MySketch extends PApplet {
     textSize(32);
     text("Zodiac Finder here", width / 2, height / 2);
   }
+  
 
   // inputs
-  public void mousePressed() {
-    // main menu buttons, check if program is current on menu
+public void mousePressed() {
+
+    // MAIN MENU
     if (gameState == 0) {
-      // check if start story button was clicked
-      if (mouseX > width/2 - 150 && mouseX < width/2 + 150 && mouseY > 320 && mouseY < 380) {
-        gameState = 1; // if so, switch gameState for story
-      }
-      // check if zodiac finder button was clicked
-      else if (mouseX > width/2 - 150 && mouseX < width/2 + 150 && mouseY > 420 && mouseY < 480) {
-        gameState = 2; // if so, switch gameState for zodiac finder
-      }
-    }
-    
-    // return to menu
-    else { // if mouse clicks in back buttons bounds
-        if (mouseX > 10 && mouseX < 70 && mouseY > 10 && mouseY < 38) {
-            gameState = 0; 
+        if (mouseX > width/2 - 150 && mouseX < width/2 + 150 &&
+            mouseY > 320 && mouseY < 380) {
+            gameState = 1;
+            storyStep = 0; // reset story
+        }
+        else if (mouseX > width/2 - 150 && mouseX < width/2 + 150 &&
+                 mouseY > 420 && mouseY < 480) {
+            gameState = 2;
         }
     }
-  }
+
+    // STORY
+    else if (gameState == 1) {
+
+    // BACK BUTTON
+    if (mouseX > 10 && mouseX < 70 && mouseY > 10 && mouseY < 38) {
+        gameState = 0;
+        return;
+    }
+
+    // DIALOGUE BOX CLICK
+    if (mouseX > 90 && mouseX < 90 + 1020 &&
+        mouseY > 48 && mouseY < 48 + 160) {
+
+        storyStep++;
+
+        // move to next scene after last dialogue
+        if (storyStep > 3) {
+            gameState = 3;   // new scene
+            storyStep = 0;   // reset for next time
+        }
+    }
+}
+
+    // OTHER STATES
+    else {
+        if (mouseX > 10 && mouseX < 70 && mouseY > 10 && mouseY < 38) {
+            gameState = 0;
+        }
+    }
+}
 }
