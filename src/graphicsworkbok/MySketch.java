@@ -18,9 +18,10 @@ public class MySketch extends PApplet {
     // allows for "sub-states" within the game for progression
     private int storyStep = 0;
     // 0 intro
-    // 1 emperor explain
-    // 2 begin
+    // 1 wip
+    // 2 wip
     // 3 wip
+    // x 
     // add all assets here when made, or it wont work
     private Asset plains;
     private Asset river;
@@ -71,14 +72,25 @@ public class MySketch extends PApplet {
       drawMenu(); // main menu for gameState 0
     } 
     else if (gameState == 1) {
-      drawStory(); // story for gameState 1
-      drawBackButton();
-    } 
+        // plains/start scene
+        if (storyStep <= 3) {
+            drawPlainsScene();
+            drawBackButton();
+        }
+        // river scene
+        else if (storyStep <= 6) { // increase number in the future if needed, also the plan for creating multiple river parts
+            drawRiverScene1();
+        }
+        // finishing order?
+        else if (storyStep <= 100) { // for Use of user input controls for graphics, maybe have one where you control the slow pig to the finish
+            drawPlainsScene(); // placeholder, create new one
+        } 
     else if (gameState == 2) {
       drawZodiac(); // zodiac finder for gameState 2
       drawBackButton();
     }
   }
+  } // end draw()
 
   // main menu
   public void drawMenu() {
@@ -113,7 +125,7 @@ public class MySketch extends PApplet {
   }
 
   // placeholders for drawing gameState
-  public void drawStory() {
+  public void drawPlainsScene() {
     plains.draw();
     dbox.draw();
     jadeemperor.draw();
@@ -141,15 +153,32 @@ public class MySketch extends PApplet {
         text("got to represent a year.", width / 2, 152);
     }
     else if (storyStep == 2) {
-        text("The Jade emperor crode:", width / 2, 96);
-        text("tuh92cruh92uh8923ruh923ruh923rff6tg78g835gh8uh89uh9fj", width / 2, 124);
+        text("All the animals soon gathered in the plains to start. There came the pig,", width / 2, 96);
+        text("rooster, monkey, goat, horse, snake, rabbit, dog, tiger, ox, rat, and dragon.", width / 2, 124);
+    }
+    else if (storyStep == 3) {
+        text("The animals strategized with each other. The rat asked the ox, its friend to", width / 2, 96);
+        text("work together and ride to the finish, and the monkey, goat, and the leading", width / 2, 124);
+        text("rooster chose to team up. And now, the race was about to begin.", width / 2, 152);
+        text("Click to begin race", width / 2, 180);
     }
   }
   
-  public void drawRiverScene() {
+  // make multiple parts?
+  public void drawRiverScene1() {
       river.draw();
-      rat.draw();
-      ox.draw();
+      dbox.draw();
+      fill(0);
+      textSize(28);
+      if (storyStep == 4) { // keep track, IMPORTANT
+          rat.setPosition(275, 500);
+          ox.setPosition(300, 520);
+          
+          ox.draw();
+          rat.draw();
+          text("The rat rode on the ox's back..........................................", width / 2, 96);
+      }
+
       
   }
   // placeholder for the additional feature
@@ -161,49 +190,44 @@ public class MySketch extends PApplet {
   
 
   // inputs
-public void mousePressed() {
+  public void mousePressed() {
 
     // MAIN MENU
     if (gameState == 0) {
-        if (mouseX > width/2 - 150 && mouseX < width/2 + 150 &&
-            mouseY > 320 && mouseY < 380) {
-            gameState = 1;
-            storyStep = 0; // reset story
-        }
-        else if (mouseX > width/2 - 150 && mouseX < width/2 + 150 &&
-                 mouseY > 420 && mouseY < 480) {
-            gameState = 2;
-        }
+      if (mouseX > width/2 - 150 && mouseX < width/2 + 150 &&
+          mouseY > 320 && mouseY < 380) {
+        gameState = 1;
+        storyStep = 0;
+      }
+      else if (mouseX > width/2 - 150 && mouseX < width/2 + 150 &&
+               mouseY > 420 && mouseY < 480) {
+        gameState = 2;
+      }
     }
 
     // STORY
     else if (gameState == 1) {
 
-    // BACK BUTTON
-    if (mouseX > 10 && mouseX < 70 && mouseY > 10 && mouseY < 38) {
+      // BACK BUTTON
+      if (mouseX > 10 && mouseX < 70 && mouseY > 10 && mouseY < 38) {
         gameState = 0;
+        storyStep = 0;
         return;
+      }
+
+      // DIALOGUE BOX
+      if (mouseX > 90 && mouseX < 90 + 1020 &&
+          mouseY > 48 && mouseY < 48 + 160) {
+
+        storyStep++;  // always move forward
+      }
     }
-
-    // DIALOGUE BOX CLICK
-    if (mouseX > 90 && mouseX < 90 + 1020 &&
-        mouseY > 48 && mouseY < 48 + 160) {
-
-        storyStep++;
-
-        // move to next scene after last dialogue
-        if (storyStep > 3) {
-            gameState = 3;   // new scene
-            storyStep = 0;   // reset for next time
-        }
-    }
-}
 
     // OTHER STATES
     else {
-        if (mouseX > 10 && mouseX < 70 && mouseY > 10 && mouseY < 38) {
-            gameState = 0;
-        }
+      if (mouseX > 10 && mouseX < 70 && mouseY > 10 && mouseY < 38) {
+        gameState = 0;
+      }
     }
-}
+  }
 }

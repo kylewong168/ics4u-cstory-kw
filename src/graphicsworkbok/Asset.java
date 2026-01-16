@@ -38,6 +38,11 @@ public class Asset {
     app.image(image, x, y); 
   }
   
+  public void setPosition(int x, int y) {
+      this.x = x;
+      this.y = y;
+  }
+  
   public boolean isClicked(int mouseX, int mouseY) {
     float d = PApplet.dist(mouseX, mouseY, x, y);
     // return true if  mouse is within 25px of the person's position
