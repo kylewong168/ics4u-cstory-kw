@@ -39,6 +39,7 @@ public class MySketch extends PApplet {
     private Asset rooster;
     private Asset dog;
     private Asset pig;
+    private Asset raft;
   
   public void settings() {
     size(1200, 800);
@@ -61,7 +62,7 @@ public class MySketch extends PApplet {
     rooster = new Asset(this, 790, 561, 99, "images/rooster.png");
     dog = new Asset(this, 310, 600, 99, "images/dog.png");
     pig = new Asset(this, 880, 514, 99, "images/pig.png");
-    
+    raft = new Asset(this, 0, 0, 99, "images/raft.png");
     
   }
   
@@ -78,7 +79,7 @@ public class MySketch extends PApplet {
             drawBackButton();
         }
         // river scene
-        else if (storyStep <= 6) { // increase number in the future if needed, also the plan for creating multiple river parts
+        else if (storyStep <= 16) { // increase number in the future if needed, also the plan for creating multiple river parts
             drawRiverScene1();
         }
         // finishing order?
@@ -166,19 +167,80 @@ public class MySketch extends PApplet {
   
   // make multiple parts?
   public void drawRiverScene1() {
-      river.draw();
-      dbox.draw();
-      fill(0);
-      textSize(28);
-      if (storyStep == 4) { // keep track, IMPORTANT
-          rat.setPosition(275, 500);
-          ox.setPosition(300, 520);
+    river.draw();
+    dbox.draw();
+    fill(0);
+    textSize(28);
+    if (storyStep == 4) { // keep track, IMPORTANT
+        rat.setPosition(24, 380);
+        ox.setPosition(24, 400);
           
-          ox.draw();
-          rat.draw();
-          text("The rat rode on the ox's back..........................................", width / 2, 96);
-      }
-
+        ox.draw();
+        rat.draw();
+        text("At the rapid river...", width / 2, 96);
+        text("The rat ccould not swim well, so it asked the ox to carry it across.", width / 2, 124);
+    }
+    else if (storyStep == 5) {
+        rat.setPosition(660, 375);
+        ox.setPosition(669, 395);
+        tiger.setPosition(180, 395);
+        ox.draw();
+        rat.draw();
+        tiger.draw();
+        
+        text("While the ox and rat treaded through the rapid river,", width / 2, 96);
+        text("the formidable tiger leapt in behind, swimming against the strong current", width / 2, 124);
+    }
+    else if (storyStep == 6) {
+        rat.setPosition(1005, 600);
+        ox.setPosition(1000, 580);
+        tiger.setPosition(660, 548);
+        rabbit.setPosition(170, 480);
+        ox.draw();
+        rat.draw();
+        tiger.draw();
+        rabbit.draw();
+        
+        text("The ox and rat made it across, as the tiger pushed through.", width / 2, 96);
+        text("Next came the agile rabbit, hopping across the stones.", width / 2, 124);
+    }
+    else if (storyStep == 7) {
+        tiger.setPosition(1000, 580);
+        rabbit.setPosition(520, 560);
+        tiger.draw();
+        rabbit.draw();
+        text("The tiger made it across, as the rabbit continued hopping from stone to stone.", width / 2, 96);
+    }
+    else if (storyStep == 8) {
+        rabbit.setPosition(1000, 580);
+        dragon.setPosition(400, 300);
+        rabbit.draw();
+        dragon.draw();
+        text("The rabbit managed to cross the river, as the dragon finally made its", width / 2, 96);
+        text("appearance. The dragon was expected to come first as it could fly, but had", width / 2, 124);
+        text("stopped along the way to help a farmer put out a fire.", width / 2, 152);
+    }
+    else if (storyStep == 9) {
+        dragon.setPosition(1000, 580);
+        horse.setPosition(420, 560);
+        snake.setPosition(390, 545);
+        dragon.draw();
+        horse.draw();
+        snake.draw();
+        text("The dragon flew across, as the horse and scheming snake approached.", width / 2, 96);
+        text("The horse powerfully treaded across, with the snake unknowingly hiding", width / 2, 124);
+        text("around the horse's leg.", width / 2, 152);
+    }
+    else if (storyStep == 10) {
+        horse.setPosition(1040, 560);
+        snake.setPosition(1010, 545);
+        horse.draw();
+        snake.draw();
+        text("The horse and sneaky snake made it across the river, as the next animals approached.", width / 2, 96);
+        text("Now came the goat, monkey, and their rooster leader.", width / 2, 124);
+        text("They had put together a raft to cross in together!", width / 2, 152);
+    }
+    
       
   }
   // placeholder for the additional feature
