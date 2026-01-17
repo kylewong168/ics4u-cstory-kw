@@ -234,14 +234,48 @@ public class MySketch extends PApplet {
     else if (storyStep == 10) {
         horse.setPosition(1040, 560);
         snake.setPosition(1010, 545);
+        goat.setPosition(275, 375);
+        monkey.setPosition(334, 400);
+        rooster.setPosition(380, 375);
+        raft.setPosition(270, 405);
         horse.draw();
         snake.draw();
-        text("The horse and sneaky snake made it across the river, as the next animals approached.", width / 2, 96);
-        text("Now came the goat, monkey, and their rooster leader.", width / 2, 124);
+        raft.draw();
+        goat.draw();
+        monkey.draw();
+        rooster.draw();
+        
+        text("The horse and sneaky snake made it across the river, as the next animals", width / 2, 96);
+        text("approached. Now came the goat, monkey, and their rooster leader.", width / 2, 124);
         text("They had put together a raft to cross in together!", width / 2, 152);
     }
+    else if (storyStep == 11) {
+        goat.setPosition(1050, 580);
+        monkey.setPosition(1020, 530);
+        rooster.setPosition(1000, 470);
+        raft.setPosition(770, 400);
+        dog.setPosition(580, 430);
+        raft.draw();
+        rooster.draw();
+        monkey.draw();
+        goat.draw();
+        dog.draw();
+        
+        text("The team of the monkey, goat, and rooster soon crossed the river", width / 2, 96);
+        text("Next came the dog, getting distracted and playing in the river...", width / 2, 124);
+    }
+    else if (storyStep == 11) {
+        raft.setPosition(800, 400);
+        dog.setPosition(580, 430);
+        raft.draw();
+        dog.draw();
+        
+        text("asd", width / 2, 96);
+        text("asd", width / 2, 124);
+    }
+     
     
-      
+    
   }
   // placeholder for the additional feature
   public void drawZodiac() {
