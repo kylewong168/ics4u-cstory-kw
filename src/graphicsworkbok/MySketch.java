@@ -25,6 +25,7 @@ public class MySketch extends PApplet {
     // add all assets here when made, or it wont work
     private Asset plains;
     private Asset river;
+    private Asset finishline;
     private Asset dbox;
     private Asset jadeemperor;
     private Asset rat;
@@ -50,6 +51,7 @@ public class MySketch extends PApplet {
     jadeemperor = new Asset(this, 1050, 475, 99, "images/jadeemperor.png");
     plains = new Asset(this, 0, 0, 99, "images/plains.png");
     river = new Asset(this, 0, 0, 99, "images/river.png");
+    finishline = new Asset(this, 0, 0, 99, "images/finishline.png");
     rat = new Asset(this, 120, 541, 99, "images/rat.png");
     ox = new Asset(this, 170, 511, 99, "images/ox.png");
     tiger = new Asset(this, 300, 515, 99, "images/tiger.png");
@@ -79,12 +81,12 @@ public class MySketch extends PApplet {
             drawBackButton();
         }
         // river scene
-        else if (storyStep <= 16) { // increase number in the future if needed, also the plan for creating multiple river parts
+        else if (storyStep <= 14) { // increase number in the future if needed, also the plan for creating multiple river parts
             drawRiverScene1();
         }
         // finishing order?
-        else if (storyStep <= 100) { // for Use of user input controls for graphics, maybe have one where you control the slow pig to the finish
-            drawPlainsScene(); // placeholder, create new one
+        else if (storyStep <= 26) { // for Use of user input controls for graphics, maybe have one where you control the slow pig to the finish
+            drawFinishScene(); // placeholder, create new one
         } 
     else if (gameState == 2) {
       drawZodiac(); // zodiac finder for gameState 2
@@ -264,19 +266,63 @@ public class MySketch extends PApplet {
         text("The team of the monkey, goat, and rooster soon crossed the river", width / 2, 96);
         text("Next came the dog, getting distracted and playing in the river...", width / 2, 124);
     }
-    else if (storyStep == 11) {
-        raft.setPosition(800, 400);
-        dog.setPosition(580, 430);
-        raft.draw();
+    else if (storyStep == 12) {
+        dog.setPosition(1050, 580);
         dog.draw();
         
-        text("asd", width / 2, 96);
-        text("asd", width / 2, 124);
+        text("The dog played and played, forgetting about the race, until finally crossing the river.", width / 2, 96);
     }
-     
-    
-    
+    else if (storyStep == 13) {
+        pig.setPosition(580, 430);
+        pig.draw();
+        
+        text("And eventually, the pig had finally arrived after all the animals crossed.", width / 2, 96);
+        text("Before starting, the pig had stopped for food on the way, and even took a nap.", width / 2, 124);
+    }
+    else if (storyStep == 14) {
+        pig.setPosition(1050, 600);
+        pig.draw();
+        
+        text("The pig finally made its way across the river after lots of slack,", width / 2, 96);
+        text("as the rest of the animals headed toward the finish line.", width / 2, 124);
+    } 
   }
+  
+  public void drawFinishScene() {
+    finishline.draw();
+    dbox.draw();
+    fill(0);
+    textSize(28);
+    if (storyStep == 15) { 
+        rat.setPosition(740, 440);
+        ox.setPosition(580, 500);
+        rat.setScale(2.0f);
+        ox.setScale(2.0f);
+          
+        ox.draw();
+        rat.draw();
+        text("At the finish line...", width / 2, 96);
+        text("The rat leapt off of the ox's back showing smarts and finesse, stealing first place!", width / 2, 124);
+        text("The ox came in second, after the rat, still proving its strength and endurance.", width / 2, 152);
+    }
+    else if (storyStep == 16) {
+        tiger.setPosition(740, 440);
+        tiger.setScale(2.0f);
+        tiger.draw();
+        
+        text("The tiger came next, earning third place, showing brawn and bravery", width / 2, 96);
+        text("the formidable tiger leapt in behind, swimming against the strong current", width / 2, 124);
+    }
+    else if (storyStep == 17) {
+        tiger.setPosition(740, 440);
+        tiger.setScale(2.0f);
+        tiger.draw();
+        
+        text("The tiger came next, earning third place, showing brawn and bravery", width / 2, 96);
+        text("the formidable tiger leapt in behind, swimming against the strong current", width / 2, 124);
+    }
+  }
+  
   // placeholder for the additional feature
   public void drawZodiac() {
     fill(0);
